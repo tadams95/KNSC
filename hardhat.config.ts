@@ -16,6 +16,12 @@ const config: HardhatUserConfig = {
       accounts: {
         mnemonic: process.env.MNEMONIC ?? "",
       },
+      verify: {
+        etherscan: {
+          apiUrl: "https://api-goerli.basescan.org",
+          apiKey: process.env.ETHERSCAN_API_KEY ?? "ETHERSCAN_API_KEY"
+        }
+      }
     },
     base_sepolia: {
       url: "https://sepolia.base.org",

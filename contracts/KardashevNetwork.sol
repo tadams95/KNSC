@@ -22,7 +22,7 @@ contract KardashevNetwork is ERC20, Ownable {
     uint256 public immutable conversionRate = 1;
 
     // Average daily energy production
-    uint256 public immutable averageDailyProduction = 24; // kWh
+    uint256 public immutable averageDailyProduction = 24 * 10 ** decimals(); // kWh
 
     // Total supply
     uint256 public _totalSupply;
@@ -32,8 +32,8 @@ contract KardashevNetwork is ERC20, Ownable {
         address initialOwner
     ) ERC20("Energy Token", "ETK") Ownable(initialOwner) {
         // Mint initial supply to the contract deployer
-        _mint(msg.sender, 10000000);
-        _totalSupply = 10000000;
+        _mint(msg.sender, 10000000 * 10 ** decimals());
+        _totalSupply = 10000000 * 10 ** decimals();
     }
 
     function getRemainingDailyTokens(
@@ -100,7 +100,7 @@ contract KardashevNetwork is ERC20, Ownable {
     }
 
     // Function to set minter status for an address
-    function setMinter(address account, bool status) public onlyOwner {
+    function setMinter(address account, bool status) public {
         minters[account] = status;
     }
 }
